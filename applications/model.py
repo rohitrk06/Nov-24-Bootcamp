@@ -11,6 +11,7 @@ class User(db.Model):
     #[<role 1> , <role 2>]
     customer_details = db.relationship("Customer",uselist=False)
     # <customer 1>
+    # user.customer_details.name
 
 
     # Optional
@@ -36,5 +37,8 @@ class Customer(db.Model):
 
 # class StoreManager(User):
 #     store_crediantials = db.Column(db.String(100), nullable=False)
+
+
+#More Models to be added
 
 
