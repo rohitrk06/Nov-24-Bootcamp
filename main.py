@@ -57,7 +57,8 @@ def create_app():
 app = create_app()  
 
 
-from applications.routes import *
+from applications.auth_routes import *
+from applications.route import *
 
 
 if __name__ == '__main__':

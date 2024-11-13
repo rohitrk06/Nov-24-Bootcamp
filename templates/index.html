@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
-    <p>Welcome to the home page</p>
+    {% if session.get('user_id') %}
+        {% if session.get('role') == 'customer' %}
+            {% include 'customer_homepage.html' %}
+        {% elif session.get('role') == 'store_manager' %}
+            {% include 'store_homepage.html' %}      
+        {% else %}
+            {% include 'admin_homepage.html' %}  
+        {% endif %}
+    {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        <a href="{{url_for('register')}}">Register</a>
+    {% endif %}
+
 {% endblock %}

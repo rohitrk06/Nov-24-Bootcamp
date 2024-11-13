@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register Details Page
+{% endblock %}
+
+
+{% block content %}
+<div class='container-fluid row justify-content-center'>
+    <div class="col-8">
+        <h1 class="m-3 text-center">Completer Customer Details</h1>
+        <form method="post" action="{{url_for('complete_profile', id = user_id)}}" >
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="phonenumber" class="form-label">Mobile Number</label>
+                <input type="text" class="form-control" id="phonenumber" name="mob">
+            </div>
+            <div class="container-fluid row justify-content-center">
+                <button type="submit" class="btn btn-primary col-1">Complete Profile</button>
+            </div>
+          </form>
+    </div>
+</div>
+{% endblock %}
+

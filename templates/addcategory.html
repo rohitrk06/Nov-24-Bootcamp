@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Category
+{% endblock %}
+
+
+{% block content %}
+<div class='container-fluid row justify-content-center'>
+    <div class="col-8">
+        <h1 class="m-3 text-center">Add Category</h1>
+        <form method="post" action="{{url_for('add_category')}}" >
+            <div class="mb-3">
+              <label for="name" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="name" name="category_name">
+            </div>
+            <div class="container-fluid row justify-content-center">
+                <button type="submit" class="btn btn-primary col-1">Create Category</button>
+            </div>
+          </form>
+    </div>
+</div>
+{% endblock %}
+

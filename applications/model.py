@@ -33,12 +33,33 @@ class Customer(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"),unique=True)
     name = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(100), nullable=True)
-    payment_details = db.Column(db.String(100), nullable=True)
 
 # class StoreManager(User):
 #     store_crediantials = db.Column(db.String(100), nullable=False)
 
 
 #More Models to be added
+
+class Categories(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category_name = db.Column(db.String(100), nullable=False, unique=True)
+
+    # products = db.relationship("Products")
+    products = db.relationship("Products", backref="category")
+
+class Products(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    cost_price = db.Column(db.Float, nullable=False)
+
+    mfg_date = db.Column(db.Date, nullable=False)
+    exp_date = db.Column(db.Date, nullable=False)
+
+    img_url = db.Column(db.String(100), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
+
+    # category = db.relationship("Categories", uselist=False)
 
 

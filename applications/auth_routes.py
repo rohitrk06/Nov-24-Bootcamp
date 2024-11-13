@@ -4,12 +4,6 @@ from applications.database import db
 from applications.model import *
 
 
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -89,10 +83,44 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        #flash success messages
+        if new_user.roles[0].role_name == 'customer':
+            return redirect(url_for('complete_profile', id = new_user.user_id))
 
+        #flash success messages
         return redirect(url_for('login'))
         
+# /compelte_profile/5
+
+@app.route('/complete_profile/<int:id>', methods=['GET','POST'])
+def complete_profile(id):
+    if request.method == 'GET':
+        user = User.query.get(id)
+        if not user:
+            # flash error messages
+            return redirect(url_for('index'))
+        
+        return render_template('customer_registration_details.html',user_id = user.user_id)
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        phone = request.form.get('mob')
+
+        user = User.query.get(id)
+        if not user:
+            # flash error messages
+            return redirect(url_for('index'))
+        
+        customer = Customer(
+            user_id = user.user_id,
+            name = name,
+            phone = phone
+        )
+
+        db.session.add(customer)
+        db.session.commit()
+
+        #flash success messages
+        return redirect(url_for('login'))
 
 
 
