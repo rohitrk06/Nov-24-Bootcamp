@@ -56,6 +56,7 @@ class Products(db.Model):
 
     mfg_date = db.Column(db.Date, nullable=False)
     exp_date = db.Column(db.Date, nullable=False)
+    # stock = db.Column(db.Integer, nullable=False)
 
     img_url = db.Column(db.String(100), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))

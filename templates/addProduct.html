@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Product
+{%endblock%}
+
+{% block content %}
+<div class='container-fluid row justify-content-center'>
+    <div class="col-8">
+        <h1 class="m-3 text-center">Add Products</h1>
+        <form method="post" action={{url_for('add_product')}} enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" name="product_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="selling_price" class="form-label">Selling Price</label>
+                    <input type="text" class="form-control" id="selling_price" name="selling_price">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="cost_price" class="form-label">Cost Price</label>
+                    <input type="text" class="form-control" id="cost_price" name="cost_price">
+                  </div>
+            </div>
+            <div>
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category">
+                    <option selected>Choose...</option>
+                    {% for category in categories %}
+                    <option value="{{category.id}}">{{category.category_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="mfg_date" class="form-label">Manufacutring Date</label>
+                    <input type="date" class="form-control" id="mfg_date" name="mfg_date">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="expirty_date" class="form-label">Expiry Date</label>
+                    <input type="date" class="form-control" id="expirty_date" name="expiry_date">
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="product_image" class="form-label">Upload Image</label>
+                <input type="file" class="form-control" accept="images/*" id="product_image" name="product_image">
+            </div>
+            <div class="container-fluid row justify-content-center">
+                <button type="submit" class="btn btn-primary col-1">Create Category</button>
+            </div>
+          </form>
+    </div>
+</div>
+{% endblock %}
